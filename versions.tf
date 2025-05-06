@@ -1,16 +1,23 @@
 terraform {
   required_version = ">= 1.6.0"
 
+  backend "s3" {
+    bucket         = "terraform-state-myproject"
+    key            = "state/dev/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
   }
-
-  backend "local" {}  # Using local state for demo; use S3 for team projects
 }
 
 provider "aws" {
   region = "us-east-1"
 }
+
