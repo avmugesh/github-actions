@@ -4,7 +4,7 @@ provider "aws" {
 
 module "backend" {
   source              = "../modules/tf-backend"
-  bucket_name         = "terraform-state-myproject"
+  bucket_name         = "terraform-state-myproject1"
   dynamodb_table_name = "terraform-locks"
 
   tags = {
